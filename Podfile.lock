@@ -1,0 +1,22 @@
+PODS:
+  - AppsFlyerFramework (6.2.0):
+    - AppsFlyerFramework/Main (= 6.2.0)
+  - AppsFlyerFramework/Main (6.2.0)
+  - SwiftLint (0.47.0)
+
+DEPENDENCIES:
+  - AppsFlyerFramework (= 6.2.0)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - AppsFlyerFramework
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  AppsFlyerFramework: c3703808c411779d9e54681efdc262f82d8d49d0
+  SwiftLint: d41cc46a2ae58ac6d9f26954bc89f1d72e71fdef
+
+PODFILE CHECKSUM: 86368aa1b54e75956e4ecd29e82ab1e56d7a80d3
+
+COCOAPODS: 1.11.2

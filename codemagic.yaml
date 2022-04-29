@@ -1,0 +1,41 @@
+definitions:
+  env_versions: &env_versions
+    xcode: 13.3
+  triggering:
+    push: &push_event
+      events:
+        - push
+  scripts:
+    - &build
+      name: Build 
+      script: xcodebuild build -workspace "Silicon.xcworkspace" -scheme "Silicon" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.4' -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO 
+
+    - &runTests
+      name: Run tests
+      script: |
+        xcode-project run-tests \
+        --workspace Silicon.xcworkspace \
+        --scheme Silicon \
+        --device "iPhone 8"
+
+workflows:
+  ios-mac-pro-workflow:
+    name: Mac Pro Workflow
+    instance_type: mac_pro
+    environment:
+      <<: *env_versions
+    triggering:
+      <<: *push_event
+    scripts:
+      - *installScripts
+      - *runTests
+  ios-m1-silicon-workflow:
+    name: M1 Silicon Workflow
+    instance_type: mac_mini_m1
+    environment:
+      <<: *env_versions
+    triggering:
+      <<: *push_event
+    scripts:
+      - *build
+      - *runTests
